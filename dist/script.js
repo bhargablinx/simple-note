@@ -1,5 +1,3 @@
-const allNotesContainer = document.querySelector(".all-note-container");
-
 function createCard() {
   // card container start
   const container = document.createElement("div");
@@ -17,6 +15,7 @@ function createCard() {
   const inputDiv = document.createElement("div"); //input div
   inputDiv.className = "mb-3";
   const titleInput = document.createElement("input"); //Title input
+  titleInput.autocomplete = "off";
   titleInput.type = "text";
   titleInput.placeholder = "Title";
   titleInput.classList.add("p-2", "w-full", "rounded-lg");
@@ -24,6 +23,7 @@ function createCard() {
   writingZonDiv.appendChild(inputDiv);
   const inputNoteDiv = document.createElement("div"); // input notes div
   const textArea = document.createElement("textarea"); // text area notes
+  textArea.autocomplete = "off";
   textArea.placeholder = "Enter Notes Here";
   textArea.classList.add("p-2", "w-full", "rounded-lg", "h-44", "resize-none");
   inputNoteDiv.appendChild(textArea);
@@ -40,18 +40,31 @@ function createCard() {
     "text-xl"
   );
   //   save btn
-  const savBtn = document.createElement("button");
-  const savIcon = document.createElement("i");
-  savIcon.classList.add("fa-solid", "fa-floppy-disk", "hover:text-sky-600");
-  savBtn.appendChild(savIcon);
+  const savBtn = document.createElement("input");
+  savBtn.classList.add(
+    "cursor-pointer",
+    "text-sm",
+    "bg-black",
+    "text-white",
+    "px-3",
+    "rounded-lg",
+    "hover:text-sky-600"
+  );
+  savBtn.type = "submit";
+  savBtn.value = "Save";
   btnContainer.appendChild(savBtn);
   //   delete btn
   const delBtn = document.createElement("button");
+  delBtn.className = "delete-button";
   const delIcon = document.createElement("i");
   delIcon.classList.add("fa-solid", "fa-trash", "hover:text-red-700");
   delBtn.appendChild(delIcon);
   btnContainer.appendChild(delBtn);
   container.appendChild(btnContainer);
 
-  allNotesContainer.appendChild(container);
+  document.querySelector(".all-note-container").appendChild(container);
 }
+
+document.querySelector(".add-note-btn").addEventListener("click", () => {
+  createCard();
+});
