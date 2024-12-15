@@ -1,3 +1,13 @@
+let notesCount = 0;
+
+class FullNoteTempelate {
+  constructor(title, description, index) {
+    this.title = title;
+    this.description = description;
+    this.index = index;
+  }
+}
+
 function createCard() {
   // card container start
   const container = document.createElement("div");
@@ -48,7 +58,8 @@ function createCard() {
     "text-white",
     "px-3",
     "rounded-lg",
-    "hover:text-sky-600"
+    "hover:text-sky-600",
+    "save-btn"
   );
   savBtn.type = "submit";
   savBtn.value = "Save";
@@ -67,4 +78,22 @@ function createCard() {
 
 document.querySelector(".add-note-btn").addEventListener("click", () => {
   createCard();
+
+  notesCount++;
+
+  document.querySelector(
+    ".note-counter"
+  ).textContent = `Total Notes Count: ${notesCount}`;
+
+  document.querySelectorAll(".save-btn").forEach((item) => {
+    item.addEventListener("click", (e) => {
+      const writingZone =
+        e.target.parentNode.parentNode.childNodes[0].childNodes;
+      const title = writingZone[0].childNodes[0].value;
+      const notes = writingZone[1].childNodes[0].value;
+      const index = notesCount - 1;
+      const n1 = new FullNoteTempelate(title, notes, index);
+      console.log(n1);
+    });
+  });
 });
