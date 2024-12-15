@@ -50,20 +50,20 @@ function createCard() {
     "text-xl"
   );
   //   save btn
-  const savBtn = document.createElement("input");
-  savBtn.classList.add(
-    "cursor-pointer",
-    "text-sm",
-    "bg-black",
-    "text-white",
-    "px-3",
-    "rounded-lg",
-    "hover:text-sky-600",
-    "save-btn"
-  );
-  savBtn.type = "submit";
-  savBtn.value = "Save";
-  btnContainer.appendChild(savBtn);
+  //   const savBtn = document.createElement("input");
+  //   savBtn.classList.add(
+  //     "cursor-pointer",
+  //     "text-sm",
+  //     "bg-black",
+  //     "text-white",
+  //     "px-3",
+  //     "rounded-lg",
+  //     "hover:text-sky-600",
+  //     "save-btn"
+  //   );
+  //   savBtn.type = "submit";
+  //   savBtn.value = "Save";
+  //   btnContainer.appendChild(savBtn);
   //   delete btn
   const delBtn = document.createElement("button");
   delBtn.className = "delete-button";
@@ -80,20 +80,26 @@ document.querySelector(".add-note-btn").addEventListener("click", () => {
   createCard();
 
   notesCount++;
-
   document.querySelector(
     ".note-counter"
   ).textContent = `Total Notes Count: ${notesCount}`;
 
-  document.querySelectorAll(".save-btn").forEach((item) => {
+  //   document.querySelectorAll(".save-btn").forEach((item) => {
+  //     item.addEventListener("click", (e) => {
+  //       const writingZone =
+  //         e.target.parentNode.parentNode.childNodes[0].childNodes;
+  //       const title = writingZone[0].childNodes[0].value;
+  //       const notes = writingZone[1].childNodes[0].value;
+  //       const index = notesCount - 1;
+  //       const n1 = new FullNoteTempelate(title, notes, index);
+  //       console.log(n1);
+  //     });
+  //   });
+
+  document.querySelectorAll(".delete-button").forEach((item) => {
     item.addEventListener("click", (e) => {
-      const writingZone =
-        e.target.parentNode.parentNode.childNodes[0].childNodes;
-      const title = writingZone[0].childNodes[0].value;
-      const notes = writingZone[1].childNodes[0].value;
-      const index = notesCount - 1;
-      const n1 = new FullNoteTempelate(title, notes, index);
-      console.log(n1);
+      let note = e.target.parentNode.parentNode.parentNode;
+      note.remove();
     });
   });
 });
