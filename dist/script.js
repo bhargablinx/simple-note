@@ -76,14 +76,16 @@ function createCard() {
   document.querySelector(".all-note-container").appendChild(container);
 }
 
-document.querySelector(".add-note-btn").addEventListener("click", () => {
-  createCard();
-
-  notesCount++;
+function updateNoteCountInDOM() {
   document.querySelector(
     ".note-counter"
   ).textContent = `Total Notes Count: ${notesCount}`;
+}
 
+document.querySelector(".add-note-btn").addEventListener("click", () => {
+  createCard();
+  notesCount++;
+  updateNoteCountInDOM();
   //   document.querySelectorAll(".save-btn").forEach((item) => {
   //     item.addEventListener("click", (e) => {
   //       const writingZone =
